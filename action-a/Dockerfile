@@ -1,5 +1,13 @@
 FROM debian:9.5-slim
 
-ADD entrypoint.sh /entrypoint.sh
+FROM golang:1.17
+
+WORKDIR /go/src/app
+# VOLUME /. /go/src/app
+COPY . /go/src/app
 RUN chmod +x /entrypoint.sh
+
+# RUN go get -d -v ./...
+# RUN go install -v ./...
+
 ENTRYPOINT ["/entrypoint.sh"]
