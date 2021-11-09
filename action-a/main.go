@@ -7,7 +7,7 @@ import (
 
 func main() {
 	fmt.Println("Olá")
-	dat, err := os.ReadFile("./test.md")
+	dat, err := os.ReadFile("README.md")
 	check(err)
 	fmt.Print(string(dat))
 
