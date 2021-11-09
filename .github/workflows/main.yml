@@ -7,8 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./action-a
-        with:
-          MY_NAME: "Mona"
       - uses: stefanzweifel/git-auto-commit-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
