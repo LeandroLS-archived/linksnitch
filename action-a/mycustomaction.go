@@ -7,8 +7,8 @@ import (
 
 func main() {
 	fmt.Println("Olá")
-	// file := CreateFile()
-	// fmt.Printf(file.Name())
+	file := CreateFile()
+	fmt.Printf(file.Name())
 }
 
 func CreateFile() *os.File {
