@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/gomarkdown/markdown"
 	"golang.org/x/net/html"
@@ -19,12 +20,12 @@ func main() {
 	htmlParsed, err := html.Parse(bReader)
 	check(err)
 	links := GetHtmlTags(htmlParsed, "a", "href", nil)
+	ms, _ := time.ParseDuration("0.35s")
 	var badLinks []string
 	if len(links) < 1 {
 		fmt.Println("No links found.")
 	} else {
 		for i := 0; i < len(links); i++ {
-			fmt.Println(links)
 			resp, err := http.Get(links[i])
 			if err != nil {
 				badLinks = append(badLinks, links[i])
@@ -34,10 +35,13 @@ func main() {
 			if resp.StatusCode != 200 {
 				badLinks = append(badLinks, links[i])
 			}
+			time.Sleep(ms)
 		}
 	}
 	if len(badLinks) >= 1 {
 		log.Fatalf("Bad Links %s", badLinks)
+	} else {
+		fmt.Println("All links works.")
 	}
 }
 
